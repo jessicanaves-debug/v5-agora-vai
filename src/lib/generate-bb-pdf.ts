@@ -408,20 +408,6 @@ export async function generateBbPdf(params: GenerateBbPdfParams): Promise<void> 
     });
   }
 
-  // ─── Footer com numeração em todas as páginas ───
-  const pageCount = doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
-    doc.setPage(i);
-    doc.setFontSize(8);
-    doc.setTextColor(...MUTED);
-    doc.text(
-      `Branddi Monitor · Relatório ${reportType} · Página ${i} de ${pageCount}`,
-      pageWidth / 2,
-      pageHeight - 8,
-      { align: "center" }
-    );
-  }
-
   // ─── Salvar ───
   const safeName = (clientName || "cliente").toLowerCase().replace(/\s+/g, "-");
   const fileName = `relatorio-brand-bidding-${safeName}-${Date.now()}.pdf`;
